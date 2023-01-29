@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  hasura:
+    image: hasura/graphql-engine:v2.17.0-ce.cli-migrations-v3
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@db:5432/postgres
+      HASURA_GRAPHQL_ENABLE_TELEMETRY: 'false'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_DEV_MODE: 'true'
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: viewer
+      HASURA_GRAPHQL_ADMIN_SECRET: devenvsecret
+      HASURA_GRAPHQL_EXPERIMENTAL_FEATURES: naming_convention
+    volumes:
+      - ./apps/hasura/metadata:/hasura-metadata
+      - ./apps/hasura/migrations:/hasura-migrations
+  db:
+    image: postgres:14.1
+    ports:
+      - 5432
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+volumes:
+  db_data:

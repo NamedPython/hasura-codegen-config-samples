@@ -1,0 +1,54 @@
+table:
+  name: people
+  schema: public
+array_relationships:
+  - name: likedPosts
+    using:
+      foreign_key_constraint_on:
+        column: people_id
+        table:
+          name: post_liked
+          schema: public
+  - name: posts
+    using:
+      foreign_key_constraint_on:
+        column: author_id
+        table:
+          name: post
+          schema: public
+select_permissions:
+  - role: author
+    permission:
+      columns:
+        - email
+        - label_name
+        - readable_id
+        - tag_line
+        - created_at
+        - updated_at
+        - id
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+  - role: viewer
+    permission:
+      columns:
+        - id
+        - label_name
+        - readable_id
+        - tag_line
+      filter: {}
+update_permissions:
+  - role: author
+    permission:
+      columns:
+        - email
+        - label_name
+        - readable_id
+        - tag_line
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check:
+        id:
+          _eq: X-Hasura-User-Id

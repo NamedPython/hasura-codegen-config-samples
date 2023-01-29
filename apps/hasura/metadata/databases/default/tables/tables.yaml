@@ -1,0 +1,4 @@
+- "!include public_people.yaml"
+- "!include public_post.yaml"
+- "!include public_post_liked.yaml"
+- "!include public_post_status.yaml"

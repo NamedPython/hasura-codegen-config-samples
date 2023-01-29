@@ -1,0 +1,14 @@
+{
+  "name": "hasura",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Hasura's metadata and migrations with CLI shorthands.",
+  "devDependencies": {
+    "dev-envs": "workspace:*",
+    "hasura-cli": "^2.17.0"
+  },
+  "scripts": {
+    "hasura:dev": "hasura --envfile node_modules/dev-envs/.dev.hasura.env --skip-update-check"
+  },
+  "license": "ISC"
+}

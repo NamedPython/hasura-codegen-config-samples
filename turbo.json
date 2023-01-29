@@ -1,5 +1,9 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "HASURA_GRAPHQL_ENDPOINT",
+    "HASURA_GRAPHQL_ADMIN_SECRET"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],

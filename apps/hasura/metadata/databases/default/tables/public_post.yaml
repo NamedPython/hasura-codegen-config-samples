@@ -1,0 +1,77 @@
+table:
+  name: post
+  schema: public
+object_relationships:
+  - name: author
+    using:
+      foreign_key_constraint_on: author_id
+  - name: status
+    using:
+      foreign_key_constraint_on: status_key
+array_relationships:
+  - name: likes
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          name: post_liked
+          schema: public
+insert_permissions:
+  - role: author
+    permission:
+      check:
+        author_id:
+          _eq: X-Hasura-User-Id
+      columns:
+        - author_id
+        - body
+        - publish_at
+        - slug
+        - status_key
+        - title
+select_permissions:
+  - role: author
+    permission:
+      columns:
+        - body
+        - slug
+        - status_key
+        - title
+        - created_at
+        - publish_at
+        - published_at
+        - updated_at
+        - author_id
+        - id
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+  - role: viewer
+    permission:
+      columns:
+        - author_id
+        - body
+        - created_at
+        - id
+        - published_at
+        - slug
+        - title
+        - updated_at
+      filter:
+        status_key:
+          _eq: PUBLISHED
+update_permissions:
+  - role: author
+    permission:
+      columns:
+        - body
+        - publish_at
+        - slug
+        - status_key
+        - title
+      filter:
+        author_id:
+          _eq: X-Hasura-User-Id
+      check:
+        author_id:
+          _eq: X-Hasura-User-Id

@@ -1,0 +1,71 @@
+table:
+  name: post_liked
+  schema: public
+object_relationships:
+  - name: people
+    using:
+      foreign_key_constraint_on: people_id
+  - name: post
+    using:
+      foreign_key_constraint_on: post_id
+insert_permissions:
+  - role: viewer
+    permission:
+      check:
+        _and:
+          - people_id:
+              _eq: X-Hasura-User-Id
+          - post:
+              status_key:
+                _eq: PUBLISHED
+          - post:
+              author_id:
+                _neq: X-Hasura-User-Id
+      columns:
+        - liked_at
+        - people_id
+        - post_id
+select_permissions:
+  - role: author
+    permission:
+      columns:
+        - liked_at
+        - post_id
+      filter:
+        post:
+          author_id:
+            _eq: X-Hasura-User-Id
+      limit: 9999
+      allow_aggregations: true
+      query_root_fields:
+        - select_aggregate
+      subscription_root_fields:
+        - select_aggregate
+  - role: viewer
+    permission:
+      columns:
+        - liked_at
+        - post_id
+      filter:
+        post:
+          status_key:
+            _eq: PUBLISHED
+      limit: 9999
+      allow_aggregations: true
+      query_root_fields:
+        - select_aggregate
+      subscription_root_fields:
+        - select_aggregate
+delete_permissions:
+  - role: viewer
+    permission:
+      filter:
+        _and:
+          - people_id:
+              _eq: X-Hasura-User-Id
+          - post:
+              status_key:
+                _eq: PUBLISHED
+          - post:
+              author_id:
+                _neq: X-Hasura-User-Id
