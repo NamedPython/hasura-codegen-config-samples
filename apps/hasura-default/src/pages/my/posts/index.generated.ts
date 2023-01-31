@@ -6,21 +6,21 @@ export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type My10PostsEachQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type My10PostsEachQuery = { __typename?: 'query_root', post: Array<{ __typename?: 'Post', slug: string, title: string, publishAt?: any | null, publishedAt?: any | null, author: { __typename?: 'People', id: any, labelName?: string | null }, likesAggregate: { __typename?: 'PostLikedAggregate', aggregate?: { __typename?: 'PostLikedAggregateFields', count: number } | null } }> };
+export type My10PostsEachQuery = { __typename?: 'query_root', post: Array<{ __typename?: 'post', slug: string, title: string, publish_at?: any | null, published_at?: any | null, author: { __typename?: 'people', id: any, label_name?: string | null }, likes_aggregate: { __typename?: 'post_liked_aggregate', aggregate?: { __typename?: 'post_liked_aggregate_fields', count: number } | null } }> };
 
 
 export const My10PostsEachDocument = gql`
     query my10PostsEach {
-  post(limit: 10, orderBy: {publishAt: DESC_NULLS_LAST}, offset: 0) {
+  post(limit: 10, order_by: {published_at: desc_nulls_last}, offset: 0) {
     slug
     title
-    publishAt
-    publishedAt
+    publish_at
+    published_at
     author {
       id
-      labelName
+      label_name
     }
-    likesAggregate {
+    likes_aggregate {
       aggregate {
         count
       }

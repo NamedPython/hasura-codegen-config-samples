@@ -1,14 +1,14 @@
 query my10PostsEach {
-  post(limit: 10, orderBy: {publishedAt: DESC_NULLS_LAST}, offset: 0) {
+  post(limit: 10, order_by: {published_at: desc_nulls_last}, offset: 0) {
     slug
     title
-    publishAt
-    publishedAt
+    publish_at
+    published_at
     author {
       id
-      labelName
+      label_name
     }
-    likesAggregate {
+    likes_aggregate {
       aggregate {
         count
       }
