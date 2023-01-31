@@ -10,7 +10,8 @@
     "codegen:default": "graphql-codegen --require dotenv/config --config codegen-default.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env",
     "codegen:role": "graphql-codegen --require dotenv/config --config codegen-role.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env",
     "codegen:role+naming": "graphql-codegen --require dotenv/config --config codegen-role-naming.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env",
-    "codegen:role+naming+enum": "graphql-codegen --require dotenv/config --config codegen-role-naming-enum.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env"
+    "codegen:role+naming+enum": "graphql-codegen --require dotenv/config --config codegen-role-naming-enum.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env",
+    "codegen:role+naming+enum+scalars": "graphql-codegen --require dotenv/config --config codegen-role-naming-enum-scalars.ts dotenv_config_path=node_modules/dev-envs/.dev.hasura.env"
   },
   "dependencies": {
     "@urql/core": "^3.1.1",
