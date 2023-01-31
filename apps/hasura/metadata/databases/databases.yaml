@@ -7,5 +7,5 @@
       isolation_level: read-committed
       use_prepared_statements: true
   customization:
-    naming_convention: graphql-default
+    naming_convention: hasura-default
   tables: "!include default/tables/tables.yaml"
