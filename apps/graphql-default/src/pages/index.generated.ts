@@ -11,7 +11,7 @@ export type Latest10PostsQuery = { __typename?: 'query_root', post: Array<{ __ty
 
 export const Latest10PostsDocument = gql`
     query latest10Posts {
-  post(limit: 10, orderBy: {publishedAt: DESC_NULLS_LAST}) {
+  post(limit: 10, orderBy: {publishedAt: DESC_NULLS_LAST}, offset: 0) {
     slug
     title
     author {

@@ -11,7 +11,7 @@ export type My10PostsEachQuery = { __typename?: 'query_root', post: Array<{ __ty
 
 export const My10PostsEachDocument = gql`
     query my10PostsEach {
-  post(limit: 10, orderBy: {publishAt: DESC_NULLS_LAST}, offset: 0) {
+  post(limit: 10, orderBy: {publishedAt: DESC_NULLS_LAST}, offset: 0) {
     slug
     title
     publishAt
